@@ -1,0 +1,44 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+The `display-query` supplies a media-query if-else.
+
+Example:
+
+    <display-query query="min-width: 700px">
+        <div class="yes">
+            this content will be shown when matching the media-query
+        </div>
+        <div class="no">
+            this content will be shown when the media-query is not matched
+        </div>
+    </display-query>
+
+@element display-query
+@homepage https://github.com/bbuecherl/display-query
+-->
+<polymer-element name="display-query" attributes="query display" noscript>
+    <template>
+        <style>
+            ::content .yes {
+                display: none !important;
+            }
+
+            ::content .no {
+                display: block !important;
+                display: {{display}} !important;
+            }
+
+            @media ({{query}}) {
+                ::content .yes {
+                    display: block !important;
+                    display: {{display}} !important;
+                }
+                ::content .no {
+                    display: none !important;
+                }
+            }
+        </style>
+        <content></content>
+    </template>
+</polymer-element>
